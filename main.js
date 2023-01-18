@@ -1,3 +1,5 @@
+// Declaración
+
 class Equipo {
   constructor(
     nombre,
@@ -29,7 +31,7 @@ class Equipo {
   }
 }
 
-let equiposArgentinos = [
+const equiposArgentinos = [
   new Equipo("Boca Juniors", 1905, 29, 1, 6, 3, 4752, 57200, 9, 0),
   new Equipo("River Plate", 1901, 36, 1, 4, 1, 4837, 72054, -9, 1),
   new Equipo("San Lorenzo", 1908, 12, 1, 1, 0, 4282, 48000, 34, 1),
@@ -37,7 +39,39 @@ let equiposArgentinos = [
   new Equipo("Racing Club", 1903, 9, 0, 1, 1, 3956, 51000, -22, 2),
 ];
 
+const ingresarClubes = () => {
+  let respuesta;
+  do {
+    let clubesActuales = equiposArgentinos.map((equipo) => {
+      return equipo.nombre;
+    });
+    alert(`Actualmente se encuentran los siguientes clubes:${clubesActuales}`);
+    respuesta = prompt("Si desea añadir mas equipos, ingrese SI");
+    if (respuesta == "SI" || respuesta == "si" || respuesta == "Si") {
+      equiposArgentinos.push(
+        new Equipo(
+          prompt("Ingrese el nombre"),
+          parseInt(prompt("Ingrese el año de fundacion")),
+          parseInt(prompt("Ingrese la cantidad de Torneos Locales")),
+          parseInt(prompt("Ingrese la cantidad de Sudamericanas")),
+          parseInt(prompt("Ingrese la cantidad de Libertadores")),
+          parseInt(prompt("Ingrese la cantidad de Intercontinentales")),
+          parseInt(
+            prompt("Ingrese la cantidad de puntos en la tabla histórica")
+          ),
+          parseInt(prompt("Ingrese la capacidad de la cancha")),
+          parseInt(prompt("Ingrese la diferencia con su clasico rival")),
+          parseInt(prompt("Ingrese la cantidad de temporadas en la B"))
+        )
+      );
+    } else {
+      return;
+    }
+  } while (respuesta == "SI" || respuesta == "Si" || respuesta == "si");
+};
+
 const mostrarInfoEquipos = () => {
+  document.write(`<h1 class="text-center">Equipos del Futbol Argentino</h1>`);
   for (const equipo in equiposArgentinos) {
     equiposArgentinos[equipo].info();
   }
@@ -65,6 +99,18 @@ const mostrarEquiposPorLibertadores = () => {
   equiposOrdenadosPorLibertadores.forEach((equipo) => {
     document.write(
       `<br>${equipo.nombre}: <b>${equipo.libertadores}</b> Libertadores`
+    );
+  });
+};
+
+const mostrarEquiposPorIntercontinentales = () => {
+  document.write("<br><br><b>Clubes ordenados por Intercontinentales:</b><br>");
+  const equiposOrdenadosPorIntercontinentales = equiposArgentinos.sort(
+    (a, b) => b.intercontinentales - a.intercontinentales
+  );
+  equiposOrdenadosPorIntercontinentales.forEach((equipo) => {
+    document.write(
+      `<br>${equipo.nombre}: <b>${equipo.intercontinentales}</b> Intercontinentales`
     );
   });
 };
@@ -175,12 +221,14 @@ const mostrarIntercontinentales = () => {
   );
 };
 
-// PERMITIR A TRAVES DE PROMPT INGRESAR MAS CLUBES AL USUARIO. VALIDAR EL INGRESO.
+// Ejecución //
 
+ingresarClubes();
 mostrarInfoEquipos();
 mostrarEquiposPorAño();
 mostrarEquiposPorTorneos();
 mostrarEquiposPorLibertadores();
+mostrarEquiposPorIntercontinentales();
 mostrarEquiposPorPuntos();
 mostrarEquiposPorCancha();
 mostrarEquiposPorSudamericana();
