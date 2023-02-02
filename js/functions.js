@@ -1,5 +1,3 @@
-// equiposArgentinos = JSON.parse(localStorage.getItem("equipos"));
-
 const mostrarInfoEquipos = () => {
   equiposArgentinos.forEach((equipo) => {
     let infoEquipo = equipo.info();
@@ -191,4 +189,20 @@ const mostrarIntercontinentales = () => {
   let parrafo = document.createElement("p");
   parrafo.innerHTML = `En total, entre todos los clubes han conseguido <b>${sumatoriaIntercontinentales}</b> intercontinentales`;
   main.append(parrafo);
+};
+
+const mostrarTodasLasFunciones = () => {
+  mostrarInfoEquipos();
+  mostrarEquiposPorAño();
+  mostrarEquiposPorTorneos();
+  mostrarEquiposPorLibertadores();
+  mostrarEquiposPorIntercontinentales();
+  mostrarEquiposPorPuntos();
+  mostrarEquiposPorCancha();
+  mostrarEquiposPorSudamericana();
+  mostrarEquiposPorHistorial();
+  mostrarEquiposPorTemporadasEnLaB();
+  mostrarTorneos();
+  mostrarLibertadores();
+  mostrarIntercontinentales();
 };
