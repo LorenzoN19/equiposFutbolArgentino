@@ -1,0 +1,21 @@
+input {
+  min-width: 250px;
+}
+
+#imagen-de-fondo {
+  background-image: url("https://www.xtrafondos.com/wallpapers/seleccion-argentina-con-trofeo-copa-mundial-fifa-11268.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 44% center;
+  max-width: 2000px;
+}
+
+#main {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
+}
+@media screen and (min-width: 992px) {
+  #main {
+    max-width: 82vw;
+  }
+}
