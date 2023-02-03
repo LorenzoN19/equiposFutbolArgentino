@@ -7,6 +7,7 @@ const ingresarClubes = () => {
 
   let nombresEquipos = equiposArgentinos.map((equipo) => equipo.nombre);
   let infoDeIngreso = document.createElement("h5");
+  infoDeIngreso.className = `mb-3`;
   infoDeIngreso.innerHTML = `<b>Actualmente se encuentran 
     ${nombresEquipos.join(", ")}.
     Si desea agregar mas clubes, complete los siguientes campos<b>`;
@@ -139,41 +140,36 @@ const ingresarClubes = () => {
   divTemporadasEnLaB.append(labelTemporadasEnLaB);
   formulario.append(divTemporadasEnLaB);
 
-  let añadirEquipo = document.createElement("button");
-  añadirEquipo.innerText = `Añadir equipo`;
-  añadirEquipo.type = "submit";
-  añadirEquipo.className = `btn btn-dark mx-1 mt-2`;
-  formulario.append(añadirEquipo);
+  let botonAñadirEquipo = document.createElement("button");
+  botonAñadirEquipo.innerText = `Añadir otro equipo`;
+  botonAñadirEquipo.type = "submit";
+  botonAñadirEquipo.className = `btn btn-dark mx-1 mt-2`;
+  formulario.append(botonAñadirEquipo);
+
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    equiposArgentinos.push(
-      new Equipo(
-        e.target[0].value,
-        parseInt(e.target[1].value),
-        parseInt(e.target[2].value),
-        parseInt(e.target[3].value),
-        parseInt(e.target[4].value),
-        parseInt(e.target[5].value),
-        parseInt(e.target[6].value),
-        parseInt(e.target[7].value),
-        parseInt(e.target[8].value),
-        parseInt(e.target[9].value)
-      )
-    );
-    mostrarTodasLasFunciones();
-    noAñadirNingunEquipo.hidden = true;
-    añadirEquipo.hidden = true;
+    agregarEquipoAlArray(e);
+    formulario.reset();
+    let parrafo = document.createElement("p");
+    parrafo.className = `mt-3`;
+    parrafo.innerHTML = `<b>El equipo fue agregado exitosamente</b>`;
+    formulario.append(parrafo);
+    setTimeout(() => {
+      parrafo.remove();
+    }, 2000);
   });
 
-  let noAñadirNingunEquipo = document.createElement("button");
-  noAñadirNingunEquipo.innerText = `No añadir ningun equipo`;
-  noAñadirNingunEquipo.type = "submit";
-  noAñadirNingunEquipo.className = `btn btn-danger mx-1 mb-2`;
-  main.append(noAñadirNingunEquipo);
-  noAñadirNingunEquipo.addEventListener("click", () => {
+  let botonNoAñadirEquipo = document.createElement("button");
+  botonNoAñadirEquipo.innerText = `No añadir más equipos`;
+  botonNoAñadirEquipo.type = "submit";
+  botonNoAñadirEquipo.className = `btn btn-danger mx-1 mb-2`;
+  main.append(botonNoAñadirEquipo);
+  botonNoAñadirEquipo.addEventListener("click", () => {
+    formulario.remove();
     mostrarTodasLasFunciones();
-    noAñadirNingunEquipo.hidden = true;
-    añadirEquipo.hidden = true;
+    botonNoAñadirEquipo.hidden = true;
+    botonAñadirEquipo.hidden = true;
+    scrollTo(0, 550);
   });
 };
 

@@ -206,3 +206,22 @@ const mostrarTodasLasFunciones = () => {
   mostrarLibertadores();
   mostrarIntercontinentales();
 };
+
+const agregarEquipoAlArray = (e) => {
+  console.log(equiposArgentinos);
+  equiposArgentinos.push(
+    new Equipo(
+      e.target[0].value,
+      parseInt(e.target[1].value),
+      parseInt(e.target[2].value),
+      parseInt(e.target[3].value),
+      parseInt(e.target[4].value),
+      parseInt(e.target[5].value),
+      parseInt(e.target[6].value),
+      parseInt(e.target[7].value),
+      parseInt(e.target[8].value),
+      parseInt(e.target[9].value)
+    )
+  );
+  console.log(equiposArgentinos);
+};

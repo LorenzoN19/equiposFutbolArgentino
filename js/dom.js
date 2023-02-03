@@ -9,6 +9,7 @@ imagenFutbol.style.width = "100%";
 imagenFutbol.style.maxWidth = "800px";
 imagenFutbol.style.display = "block";
 imagenFutbol.style.margin = "0 auto";
+imagenFutbol.className = `pb-4`;
 imagenFutbol.src =
   "https://library.sportingnews.com/styles/facebook_1200x630/s3/2022-02/LPF_Ok.jpg?itok=m3O80QNk";
 main.append(imagenFutbol);
