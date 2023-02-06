@@ -1,6 +1,9 @@
 // Declaración
 
 const ingresarClubes = () => {
+  nuevosEquiposArgentinos =
+    JSON.parse(localStorage.getItem("clubes")) || equiposArgentinos;
+
   let formulario = document.createElement("form");
   formulario.className = `my-3`;
   main.append(formulario);
@@ -92,7 +95,7 @@ const ingresarClubes = () => {
   let divPuntos = document.createElement("div");
   divPuntos.className = `form-group p-1`;
   let labelPuntos = document.createElement("label");
-  labelPuntos.innerText = `Puntos:`;
+  labelPuntos.innerText = `Puntos en la tabla histórica:`;
   let inputPuntos = document.createElement("input");
   inputPuntos.type = `number`;
   inputPuntos.min = 0;
@@ -148,7 +151,21 @@ const ingresarClubes = () => {
 
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    agregarEquipoAlArray(e);
+    nuevosEquiposArgentinos.push(
+      new Equipo(
+        e.target[0].value,
+        parseInt(e.target[1].value),
+        parseInt(e.target[2].value),
+        parseInt(e.target[3].value),
+        parseInt(e.target[4].value),
+        parseInt(e.target[5].value),
+        parseInt(e.target[6].value),
+        parseInt(e.target[7].value),
+        parseInt(e.target[8].value),
+        parseInt(e.target[9].value)
+      )
+    );
+    localStorage.setItem("clubes", JSON.stringify(nuevosEquiposArgentinos));
     formulario.reset();
     let parrafo = document.createElement("p");
     parrafo.className = `mt-3`;
@@ -166,7 +183,14 @@ const ingresarClubes = () => {
   main.append(botonNoAñadirEquipo);
   botonNoAñadirEquipo.addEventListener("click", () => {
     formulario.remove();
-    mostrarTodasLasFunciones();
+    let equiposParseados =
+      JSON.parse(localStorage.getItem("clubes")) || equiposArgentinos;
+    let equiposRecuperados = [];
+    equiposParseados.forEach((equipoParseado) => {
+      let equipoRecuperado = Object.assign(new Equipo(), equipoParseado);
+      equiposRecuperados.push(equipoRecuperado);
+    });
+    mostrarTodasLasFunciones(equiposRecuperados);
     botonNoAñadirEquipo.hidden = true;
     botonAñadirEquipo.hidden = true;
     scrollTo(0, 550);

@@ -29,7 +29,7 @@ class Equipo {
   }
 }
 
-const equiposArgentinos = [
+let equiposArgentinos = [
   new Equipo("Boca Juniors", 1905, 29, 1, 6, 3, 4752, 57200, 9, 0),
   new Equipo("River Plate", 1901, 36, 1, 4, 1, 4837, 72054, -9, 1),
   new Equipo("San Lorenzo", 1908, 12, 1, 1, 0, 4282, 48000, 34, 1),

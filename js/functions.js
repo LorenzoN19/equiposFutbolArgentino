@@ -1,16 +1,16 @@
-const mostrarInfoEquipos = () => {
-  equiposArgentinos.forEach((equipo) => {
+const mostrarInfoEquipos = (array) => {
+  array.forEach((equipo) => {
     let infoEquipo = equipo.info();
     main.append(infoEquipo);
   });
 };
 
-const mostrarEquiposPorTorneos = () => {
+const mostrarEquiposPorTorneos = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML =
     "<br><b>Clubes ordenados por titulos de Primera División:</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorTorneos = equiposArgentinos.sort(
+  const equiposOrdenadosPorTorneos = array.sort(
     (a, b) => b.torneosLocales - a.torneosLocales
   );
   let listaDesordenada = document.createElement("ul");
@@ -22,11 +22,11 @@ const mostrarEquiposPorTorneos = () => {
   });
 };
 
-const mostrarEquiposPorLibertadores = () => {
+const mostrarEquiposPorLibertadores = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = "<br><b>Clubes ordenados por Libertadores:</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorLibertadores = equiposArgentinos.sort(
+  const equiposOrdenadosPorLibertadores = array.sort(
     (a, b) => b.libertadores - a.libertadores
   );
   let listaDesordenada = document.createElement("ul");
@@ -38,12 +38,12 @@ const mostrarEquiposPorLibertadores = () => {
   });
 };
 
-const mostrarEquiposPorIntercontinentales = () => {
+const mostrarEquiposPorIntercontinentales = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML =
     "<br><b>Clubes ordenados por Intercontinentales:</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorIntercontinentales = equiposArgentinos.sort(
+  const equiposOrdenadosPorIntercontinentales = array.sort(
     (a, b) => b.intercontinentales - a.intercontinentales
   );
   let listaDesordenada = document.createElement("ul");
@@ -55,12 +55,12 @@ const mostrarEquiposPorIntercontinentales = () => {
   });
 };
 
-const mostrarEquiposPorPuntos = () => {
+const mostrarEquiposPorPuntos = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML =
     "<br><b>Clubes ordenados por la tabla historica de puntos</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorPuntos = equiposArgentinos.sort(
+  const equiposOrdenadosPorPuntos = array.sort(
     (a, b) => b.puntosTablaHistorica - a.puntosTablaHistorica
   );
   let listaDesordenada = document.createElement("ul");
@@ -72,13 +72,11 @@ const mostrarEquiposPorPuntos = () => {
   });
 };
 
-const mostrarEquiposPorAño = () => {
+const mostrarEquiposPorAño = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = "<br><b>Clubes ordenados por antigüedad:</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorAño = equiposArgentinos.sort(
-    (a, b) => a.año - b.año
-  );
+  const equiposOrdenadosPorAño = array.sort((a, b) => a.año - b.año);
   let listaDesordenada = document.createElement("ul");
   main.append(listaDesordenada);
   equiposOrdenadosPorAño.forEach((equipo) => {
@@ -88,11 +86,11 @@ const mostrarEquiposPorAño = () => {
   });
 };
 
-const mostrarEquiposPorCancha = () => {
+const mostrarEquiposPorCancha = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = "<br><b>Estadios ordenados por capacidad:</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorCancha = equiposArgentinos.sort(
+  const equiposOrdenadosPorCancha = array.sort(
     (a, b) => b.capacidadCancha - a.capacidadCancha
   );
   let listaDesordenada = document.createElement("ul");
@@ -104,11 +102,11 @@ const mostrarEquiposPorCancha = () => {
   });
 };
 
-const mostrarEquiposPorSudamericana = () => {
+const mostrarEquiposPorSudamericana = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = "<br><b>Clubes ordenados por Sudamericanas:</b><br>";
   main.append(subtitulo);
-  const equiposOrdenadosPorSudamericana = equiposArgentinos.sort(
+  const equiposOrdenadosPorSudamericana = array.sort(
     (a, b) => b.sudamericana - a.sudamericana
   );
   let listaDesordenada = document.createElement("ul");
@@ -120,11 +118,11 @@ const mostrarEquiposPorSudamericana = () => {
   });
 };
 
-const mostrarEquiposPorHistorial = () => {
+const mostrarEquiposPorHistorial = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = `<br><b>Clubes ordenados por historial contra su clásico rival:</b><br>`;
   main.append(subtitulo);
-  const equiposOrdenadosPorHistorial = equiposArgentinos.sort(
+  const equiposOrdenadosPorHistorial = array.sort(
     (a, b) => b.historialClasico - a.historialClasico
   );
   let listaDesordenada = document.createElement("ul");
@@ -136,11 +134,11 @@ const mostrarEquiposPorHistorial = () => {
   });
 };
 
-const mostrarEquiposPorTemporadasEnLaB = () => {
+const mostrarEquiposPorTemporadasEnLaB = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = `<br><b>Clubes ordenados por temporadas en la segunda categoría:</b><br>`;
   main.append(subtitulo);
-  const equiposOrdenadosPorTemporadasEnLaB = equiposArgentinos.sort(
+  const equiposOrdenadosPorTemporadasEnLaB = array.sort(
     (a, b) => a.temporadasEnLaB - b.temporadasEnLaB
   );
   let listaDesordenada = document.createElement("ul");
@@ -152,11 +150,11 @@ const mostrarEquiposPorTemporadasEnLaB = () => {
   });
 };
 
-const mostrarTorneos = () => {
+const mostrarTorneos = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = `<br><b>Total torneos locales:</b>`;
   main.append(subtitulo);
-  const sumatoriaTorneos = equiposArgentinos.reduce(
+  const sumatoriaTorneos = array.reduce(
     (total, equipo) => (total += equipo.torneosLocales),
     0
   );
@@ -165,11 +163,11 @@ const mostrarTorneos = () => {
   main.append(parrafo);
 };
 
-const mostrarLibertadores = () => {
+const mostrarLibertadores = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = `<br><b>Total libertadores</b>`;
   main.append(subtitulo);
-  const sumatoriaLibertadores = equiposArgentinos.reduce(
+  const sumatoriaLibertadores = array.reduce(
     (total, equipo) => (total += equipo.libertadores),
     0
   );
@@ -178,11 +176,11 @@ const mostrarLibertadores = () => {
   main.append(parrafo);
 };
 
-const mostrarIntercontinentales = () => {
+const mostrarIntercontinentales = (array) => {
   let subtitulo = document.createElement("h5");
   subtitulo.innerHTML = `<br><b>Total intercontinentales:</b>`;
   main.append(subtitulo);
-  const sumatoriaIntercontinentales = equiposArgentinos.reduce(
+  const sumatoriaIntercontinentales = array.reduce(
     (total, equipo) => (total += equipo.intercontinentales),
     0
   );
@@ -191,37 +189,35 @@ const mostrarIntercontinentales = () => {
   main.append(parrafo);
 };
 
-const mostrarTodasLasFunciones = () => {
-  mostrarInfoEquipos();
-  mostrarEquiposPorAño();
-  mostrarEquiposPorTorneos();
-  mostrarEquiposPorLibertadores();
-  mostrarEquiposPorIntercontinentales();
-  mostrarEquiposPorPuntos();
-  mostrarEquiposPorCancha();
-  mostrarEquiposPorSudamericana();
-  mostrarEquiposPorHistorial();
-  mostrarEquiposPorTemporadasEnLaB();
-  mostrarTorneos();
-  mostrarLibertadores();
-  mostrarIntercontinentales();
+const mostrarTodasLasFunciones = (array) => {
+  mostrarInfoEquipos(array);
+  mostrarEquiposPorAño(array);
+  mostrarEquiposPorTorneos(array);
+  mostrarEquiposPorLibertadores(array);
+  mostrarEquiposPorIntercontinentales(array);
+  mostrarEquiposPorPuntos(array);
+  mostrarEquiposPorCancha(array);
+  mostrarEquiposPorSudamericana(array);
+  mostrarEquiposPorHistorial(array);
+  mostrarEquiposPorTemporadasEnLaB(array);
+  mostrarTorneos(array);
+  mostrarLibertadores(array);
+  mostrarIntercontinentales(array);
 };
 
-const agregarEquipoAlArray = (e) => {
-  console.log(equiposArgentinos);
-  equiposArgentinos.push(
-    new Equipo(
-      e.target[0].value,
-      parseInt(e.target[1].value),
-      parseInt(e.target[2].value),
-      parseInt(e.target[3].value),
-      parseInt(e.target[4].value),
-      parseInt(e.target[5].value),
-      parseInt(e.target[6].value),
-      parseInt(e.target[7].value),
-      parseInt(e.target[8].value),
-      parseInt(e.target[9].value)
-    )
-  );
-  console.log(equiposArgentinos);
-};
+// const agregarEquipoAlArray = (e) => {
+//   array.push(
+//     new Equipo(
+//       e.target[0].value,
+//       parseInt(e.target[1].value),
+//       parseInt(e.target[2].value),
+//       parseInt(e.target[3].value),
+//       parseInt(e.target[4].value),
+//       parseInt(e.target[5].value),
+//       parseInt(e.target[6].value),
+//       parseInt(e.target[7].value),
+//       parseInt(e.target[8].value),
+//       parseInt(e.target[9].value)
+//     )
+//   );
+// };
