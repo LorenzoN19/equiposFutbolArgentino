@@ -8,7 +8,9 @@ const ingresarClubes = () => {
   formulario.className = `my-3`;
   main.append(formulario);
 
-  let nombresEquipos = equiposArgentinos.map((equipo) => equipo.nombre);
+  let nombresEquipos =
+    nuevosEquiposArgentinos.map((equipo) => equipo.nombre) ||
+    equiposArgentinos.map((equipo) => equipo.nombre);
   let infoDeIngreso = document.createElement("h5");
   infoDeIngreso.className = `mb-3`;
   infoDeIngreso.innerHTML = `<b>Actualmente se encuentran 
@@ -144,11 +146,9 @@ const ingresarClubes = () => {
   formulario.append(divTemporadasEnLaB);
 
   let botonAñadirEquipo = document.createElement("button");
-  botonAñadirEquipo.innerText = `Añadir otro equipo`;
-  botonAñadirEquipo.type = "submit";
-  botonAñadirEquipo.className = `btn btn-dark mx-1 mt-2`;
+  botonAñadirEquipo.innerText = `Añadir equipo`;
+  botonAñadirEquipo.className = `btn btn-success mx-1 mt-2`;
   formulario.append(botonAñadirEquipo);
-
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     nuevosEquiposArgentinos.push(
@@ -167,32 +167,80 @@ const ingresarClubes = () => {
     );
     localStorage.setItem("clubes", JSON.stringify(nuevosEquiposArgentinos));
     formulario.reset();
-    let parrafo = document.createElement("p");
-    parrafo.className = `mt-3`;
-    parrafo.innerHTML = `<b>El equipo fue agregado exitosamente</b>`;
-    formulario.append(parrafo);
+    inputNombre.focus();
+    Toastify({
+      text: "¡El equipo fue ingresado correctamente!",
+      duration: 2500,
+      gravity: "bottom",
+      position: "center",
+    }).showToast();
+  });
+
+  let botonBorrarUltimoEquipo = document.createElement("button");
+  botonBorrarUltimoEquipo.innerText = "Borrar último equipo";
+  botonBorrarUltimoEquipo.className = `btn btn-danger mx-1 mb-2 d-block`;
+  main.append(botonBorrarUltimoEquipo);
+  botonBorrarUltimoEquipo.addEventListener("click", () => {
+    if (nuevosEquiposArgentinos.length > 5) {
+      Swal.fire({
+        icon: "error",
+        text: "¿Está seguro que desea eliminar el ultimo equipo ingresado?",
+        showCancelButton: true,
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          let equipoEliminado = nuevosEquiposArgentinos.pop();
+          localStorage.setItem(
+            "clubes",
+            JSON.stringify(nuevosEquiposArgentinos)
+          );
+          Swal.fire(`${equipoEliminado.nombre} fue eliminado`);
+        }
+      });
+    } else {
+      Swal.fire({
+        text: "No se puede eliminar a los 5 grandes",
+        imageUrl:
+          "https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/d/d7/Historia_5_grandes_futbol_libro.jpg/440px-Historia_5_grandes_futbol_libro.jpg",
+        imageHeight: 450,
+      });
+    }
+
+    // if (nuevosEquiposArgentinos.length > 5) {
+    //   nuevosEquiposArgentinos.pop();
+    //   localStorage.setItem("clubes", JSON.stringify(nuevosEquiposArgentinos));
+    // }
+  });
+
+  let botonRecargarPagina = document.createElement("button");
+  botonRecargarPagina.innerText = `Ingresar más equipos`;
+  botonRecargarPagina.className = `btn btn-dark mx-1 mb-2`;
+  botonRecargarPagina.addEventListener("click", () => {
+    scrollTo(0, 0);
     setTimeout(() => {
-      parrafo.remove();
-    }, 2000);
+      location.reload();
+    }, 1300);
   });
 
   let botonNoAñadirEquipo = document.createElement("button");
   botonNoAñadirEquipo.innerText = `No añadir más equipos`;
-  botonNoAñadirEquipo.type = "submit";
-  botonNoAñadirEquipo.className = `btn btn-danger mx-1 mb-2`;
+  botonNoAñadirEquipo.className = `btn btn-dark mx-1 my-2`;
   main.append(botonNoAñadirEquipo);
   botonNoAñadirEquipo.addEventListener("click", () => {
     formulario.remove();
     let equiposParseados =
       JSON.parse(localStorage.getItem("clubes")) || equiposArgentinos;
-    let equiposRecuperados = [];
+    let equiposConClaseRecuperada = [];
     equiposParseados.forEach((equipoParseado) => {
       let equipoRecuperado = Object.assign(new Equipo(), equipoParseado);
-      equiposRecuperados.push(equipoRecuperado);
+      equiposConClaseRecuperada.push(equipoRecuperado);
     });
-    mostrarTodasLasFunciones(equiposRecuperados);
-    botonNoAñadirEquipo.hidden = true;
-    botonAñadirEquipo.hidden = true;
+    mostrarTodasLasFunciones(equiposConClaseRecuperada);
+    main.append(botonRecargarPagina);
+    botonNoAñadirEquipo.remove();
+    botonAñadirEquipo.remove();
+    botonBorrarUltimoEquipo.remove();
     scrollTo(0, 550);
   });
 };
