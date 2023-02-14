@@ -30,7 +30,9 @@ class Equipo {
 }
 
 let equiposArgentinos = [];
-fetch("./../json/equipos.json")
+fetch(
+  "https://raw.githubusercontent.com/LorenzoN19/equiposFutbolArgentino/main/json/equipos.json"
+)
   .then((response) => response.json())
   .then((equiposJSON) => {
     equiposJSON.forEach((equipoJSON) => {
