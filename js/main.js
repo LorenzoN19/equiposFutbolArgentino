@@ -8,14 +8,16 @@ const ingresarClubes = () => {
   formulario.className = `my-3`;
   main.append(formulario);
 
-  let nombresEquipos =
-    nuevosEquiposArgentinos.map((equipo) => equipo.nombre) ||
-    equiposArgentinos.map((equipo) => equipo.nombre);
+  let nombresEquipos = nuevosEquiposArgentinos.map((equipo) => equipo.nombre);
   let infoDeIngreso = document.createElement("h5");
   infoDeIngreso.className = `mb-3`;
-  infoDeIngreso.innerHTML = `<b>Actualmente se encuentran 
-    ${nombresEquipos.join(", ")}.
-    Si desea agregar mas clubes, complete los siguientes campos<b>`;
+  nuevosEquiposArgentinos.length == 0
+    ? (infoDeIngreso.innerHTML = `<b>Actualmente se encuentran 
+  Boca Juniors, River Plate, San Lorenzo, Independiente, Racing Club.
+  Si desea agregar mas clubes, complete los siguientes campos<b>`)
+    : (infoDeIngreso.innerHTML = `<b>Actualmente se encuentran 
+  ${nombresEquipos.join(", ")}.
+  Si desea agregar mas clubes, complete los siguientes campos<b>`);
   formulario.append(infoDeIngreso);
 
   let divNombre = document.createElement("div");
@@ -183,7 +185,7 @@ const ingresarClubes = () => {
   botonBorrarUltimoEquipo.addEventListener("click", () => {
     if (nuevosEquiposArgentinos.length > 5) {
       Swal.fire({
-        icon: "error",
+        icon: "warning",
         text: "¿Está seguro que desea eliminar el ultimo equipo ingresado?",
         showCancelButton: true,
         confirmButtonText: "Si",
@@ -195,7 +197,10 @@ const ingresarClubes = () => {
             "clubes",
             JSON.stringify(nuevosEquiposArgentinos)
           );
-          Swal.fire(`${equipoEliminado.nombre} fue eliminado`);
+          Swal.fire({
+            text: `${equipoEliminado.nombre} fue eliminado`,
+            icon: "success",
+          });
         }
       });
     } else {
@@ -203,14 +208,9 @@ const ingresarClubes = () => {
         text: "No se puede eliminar a los 5 grandes",
         imageUrl:
           "https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/d/d7/Historia_5_grandes_futbol_libro.jpg/440px-Historia_5_grandes_futbol_libro.jpg",
-        imageHeight: 450,
+        imageHeight: 400,
       });
     }
-
-    // if (nuevosEquiposArgentinos.length > 5) {
-    //   nuevosEquiposArgentinos.pop();
-    //   localStorage.setItem("clubes", JSON.stringify(nuevosEquiposArgentinos));
-    // }
   });
 
   let botonRecargarPagina = document.createElement("button");
@@ -233,8 +233,11 @@ const ingresarClubes = () => {
       JSON.parse(localStorage.getItem("clubes")) || equiposArgentinos;
     let equiposConClaseRecuperada = [];
     equiposParseados.forEach((equipoParseado) => {
-      let equipoRecuperado = Object.assign(new Equipo(), equipoParseado);
-      equiposConClaseRecuperada.push(equipoRecuperado);
+      let equipoConClaseRecuperada = Object.assign(
+        new Equipo(),
+        equipoParseado
+      );
+      equiposConClaseRecuperada.push(equipoConClaseRecuperada);
     });
     mostrarTodasLasFunciones(equiposConClaseRecuperada);
     main.append(botonRecargarPagina);

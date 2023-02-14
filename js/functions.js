@@ -204,20 +204,3 @@ const mostrarTodasLasFunciones = (array) => {
   mostrarLibertadores(array);
   mostrarIntercontinentales(array);
 };
-
-// const agregarEquipoAlArray = (e) => {
-//   array.push(
-//     new Equipo(
-//       e.target[0].value,
-//       parseInt(e.target[1].value),
-//       parseInt(e.target[2].value),
-//       parseInt(e.target[3].value),
-//       parseInt(e.target[4].value),
-//       parseInt(e.target[5].value),
-//       parseInt(e.target[6].value),
-//       parseInt(e.target[7].value),
-//       parseInt(e.target[8].value),
-//       parseInt(e.target[9].value)
-//     )
-//   );
-// };

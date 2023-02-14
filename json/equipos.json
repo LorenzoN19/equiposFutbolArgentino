@@ -1,0 +1,62 @@
+[
+  {
+    "nombre": "Boca Juniors",
+    "año": 1905,
+    "torneosLocales": 29,
+    "sudamericana": 1,
+    "libertadores": 6,
+    "intercontinentales": 3,
+    "puntosTablaHistorica": 4752,
+    "capacidadCancha": 57200,
+    "historialClasico": 9,
+    "temporadasEnLaB": 0
+  },
+  {
+    "nombre": "River Plate",
+    "año": 1901,
+    "torneosLocales": 36,
+    "sudamericana": 1,
+    "libertadores": 4,
+    "intercontinentales": 1,
+    "puntosTablaHistorica": 4837,
+    "capacidadCancha": 83000,
+    "historialClasico": -9,
+    "temporadasEnLaB": 1
+  },
+  {
+    "nombre": "San Lorenzo",
+    "año": 1908,
+    "torneosLocales": 12,
+    "sudamericana": 1,
+    "libertadores": 1,
+    "intercontinentales": 0,
+    "puntosTablaHistorica": 4282,
+    "capacidadCancha": 48000,
+    "historialClasico": 34,
+    "temporadasEnLaB": 1
+  },
+  {
+    "nombre": "Independiente",
+    "año": 1905,
+    "torneosLocales": 14,
+    "sudamericana": 2,
+    "libertadores": 7,
+    "intercontinentales": 2,
+    "puntosTablaHistorica": 4224,
+    "capacidadCancha": 47069,
+    "historialClasico": 22,
+    "temporadasEnLaB": 1
+  },
+  {
+    "nombre": "Racing Club",
+    "año": 1903,
+    "torneosLocales": 9,
+    "sudamericana": 0,
+    "libertadores": 1,
+    "intercontinentales": 1,
+    "puntosTablaHistorica": 3956,
+    "capacidadCancha": 51000,
+    "historialClasico": -22,
+    "temporadasEnLaB": 2
+  }
+]
